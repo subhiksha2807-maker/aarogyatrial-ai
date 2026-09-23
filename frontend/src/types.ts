@@ -1,0 +1,9 @@
+export type Role = 'coordinator' | 'pi' | 'ethics_reviewer'
+export type User = { id: number; username: string; display_name: string; role: Role }
+export type Study = { id: number; code: string; title: string; description: string; target_enrollment: number; enrolled_count: number; status: string }
+export type Site = { id: number; code: string; name: string; city: string; target_enrollment: number; enrolled_count: number; planned_to_date: number }
+export type Participant = { code: string; status: string; site_code: string; study_id?: number; study_code?: string }
+export type Milestone = { id: number; title: string; due_date: string; status: string; study_code?: string }
+export type StudyDetail = Study & { sites: Site[]; participants: Participant[]; milestones: Milestone[] }
+export type AdverseEvent = { id: number; participant_code: string; study_code: string; narrative: string; onset_date: string; severity: string; suggested_category: string; suggestion_reason: string; status: string; final_category: string | null; created_by_name: string; created_at: string; reviewed_by_name: string | null; reviewed_at: string | null; review_note: string | null }
+export type AuditEntry = { id: number; adverse_event_id: number; actor_name: string; actor_role: Role; action: string; detail: string; created_at: string; participant_code: string; study_code: string }
